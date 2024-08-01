@@ -183,7 +183,55 @@
                                     Desculpe, houve um erro ao enviar seu formulário.
                                 </div>
                             </form>
-            
+
+                            <style>
+                                .whatsapp-icon {
+                                    position: fixed;
+                                    bottom: 20px;
+                                    right: 20px;
+                                    background-color: #25D366;
+                                    border-radius: 50%;
+                                    width: 60px;
+                                    height: 60px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    color: white;
+                                    font-size: 30px;
+                                    cursor: pointer;
+                                    z-index: 1000;
+                                }
+                        
+                                .whatsapp-form {
+                                    display: none;
+                                    position: fixed;
+                                    bottom: 100px;
+                                    right: 20px;
+                                    width: 300px;
+                                    background-color: white;
+                                    border: 1px solid #ccc;
+                                    border-radius: 8px;
+                                    padding: 20px;
+                                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                    z-index: 1000;
+                                }
+                            </style>
+                            <div class="whatsapp-icon" onclick="toggleForm()">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="whatsapp-form" id="whatsappForm">
+                                <form id="contactForm">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-block">Send</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -301,6 +349,22 @@
     <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     <script src="form.js"></script>
     <script src="recaptcha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        function toggleForm() {
+            $('#whatsappForm').toggle();
+        }
+
+        $('#contactForm').submit(function(event) {
+            event.preventDefault();
+            const name = $('#name').val();
+            const email = $('#email').val();
+            const phone = '5565992325386'; // Insira o número de telefone do atendente aqui
+
+            const whatsappUrl = `https://api.whatsapp.com/send/?phone=${phone}&text=Olá!%20Meu%20nome%20é%20${name}%20e%20meu%20email%20é%20${email}.%20Gostaria%20de%20falar%20com%20um%20atendente.`;
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
    
 </body>
 
