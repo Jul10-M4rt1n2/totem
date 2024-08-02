@@ -1,4 +1,5 @@
 <?php
+die('handler.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -17,7 +18,6 @@ $validator = $pp->getValidator();
 $validator->fields(['Name','Email'])->areRequired()->maxLength(50);
 $validator->field('Email')->isEmail();
 $validator->field('Message')->maxLength(6000);
-
 
 // $pp->requireReCaptcha();
 // $pp->getReCaptcha()->initSecretKey('copy-your-secret-key-here');
